@@ -31,9 +31,11 @@ Deadlines
 April 23rd, 2024 – intermediate deadline. Required advancement:
 - data acquisition must be completed;
 - complete GUI, information to be displayed can be mocked at this point;
-- data processing module should be completed in 25%;
+- data processing module should be completed in 25%
+
 May 28th, 2024 – project presentation. Required advancement: the entire 
-programming work must be completed in 95%. 
+programming work must be completed in 95%.
+
 June 11th, 2024 – project submission (via email as a link to OneDrive folder with 
 project to be downloaded). The submission includes the project and its documentation. 
 Documentation should cover in detail the algorithm for information extraction. 
