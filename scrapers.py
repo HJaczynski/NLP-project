@@ -5,7 +5,7 @@ import re
 import time
 from datetime import datetime
 
-# Regular expression pattern to match the date format
+# Function to extract the date from a string using regular expressions
 def extract_date_from_string(text):
     # Regular expression pattern to match the date format
     pattern = r'([A-Za-z]+ \d{1,2}, \d{4}, \d{2}:\d{2} [AP]M)'
@@ -20,7 +20,7 @@ def extract_date_from_string(text):
 
 
 # Function to obtain the links to scrape from the UNB API
-def unb_api_fetcher():
+def fetch_unb_api():
     link_id = 0
     has_more = True
     links_to_scrape = set()
@@ -53,7 +53,7 @@ def unb_api_fetcher():
 
 # Function to scrape the UNB articles
 def scrape_metadata(links):
-    MetaDataList = []
+    meta_data_list = []
 
     for link in links:
         title = ""
@@ -94,8 +94,17 @@ def scrape_metadata(links):
                     raw_text += p.text + " "
         
         # Create a new MetaData object and append it to the list
-        NewMetaData = MetaData(publication_date, update_date, "Bangladesh", title, html_text.text, raw_text, link)
-        MetaDataList.append(NewMetaData)
+        new_md = MetaData(publication_date, update_date, "Bangladesh", title, html_text.text, raw_text, link)
+        meta_data_list.append(new_md)
 
     # Return the list of MetaData objects
-    return MetaDataList
+    return meta_data_list
+
+
+# Function to write the links obtained from the UNB API to a txt file
+def write_links_to_file(links):
+    f = open("myfile.txt", "w")
+    for link in links:
+        f.write(link + "\n")
+    f.close()
+    print("Links written to file.")
