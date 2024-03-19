@@ -21,7 +21,7 @@ def extract_date_from_string(text):
 
 # Function to obtain the links to scrape from the UNB API
 def fetch_unb_api():
-    link_id = 0
+    api_id = 0
     has_more = True
     links_to_scrape = set()
 
@@ -30,7 +30,7 @@ def fetch_unb_api():
                 "accident", "human-hauler"]
 
     while has_more is True:
-        http_link = f"https://www.unb.com.bd/api/tag-news?tag_id=54&item={link_id}"
+        http_link = f"https://www.unb.com.bd/api/tag-news?tag_id=54&item={api_id}"
         response = requests.get(http_link)
         data = response.json()
         has_more = data['hasMore']
@@ -44,8 +44,8 @@ def fetch_unb_api():
                     links_to_scrape.add(anchor['href'])
 
         
-        print(f"[{link_id}]: {has_more}")
-        link_id += 1
+        print(f"[{api_id}]: {has_more}")
+        api_id += 1
         time.sleep(1)
         
     return list(links_to_scrape)
@@ -103,7 +103,7 @@ def scrape_metadata(links):
 
 # Function to write the links obtained from the UNB API to a txt file
 def write_links_to_file(links):
-    f = open("myfile.txt", "w")
+    f = open("links.txt", "w")
     for link in links:
         f.write(link + "\n")
     f.close()
