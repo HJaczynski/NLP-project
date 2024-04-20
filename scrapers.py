@@ -67,8 +67,16 @@ def scrape_metadata(links):
         soup = BeautifulSoup(html_text.text, 'lxml')
 
         information = soup.find_all('li', class_='news-section-bar')
+        html_raw_text= soup.find_all('div', class_="news-article-text-block text-patter-edit ref-link")
 
-        html_raw_text = soup.find('div', class_="news-article-text-block text-patter-edit ref-link")
+        #As html_raw_text info has < and > we want to get rid of it as it destroys our csv parsing. We could drop them but I found out one can use this lt and gt (less/greater than)
+        cleaned_text_list = []
+        for html_element in html_raw_text:
+            element_string = str(html_element)
+            cleaned_string = element_string.replace('<', '&lt').replace('>', '&gt')
+            cleaned_text_list.append(cleaned_string)
+
+        html_raw_text = cleaned_text_list
 
         if len(information) > 4:
             meta_location = information[0].text
@@ -94,8 +102,9 @@ def scrape_metadata(links):
                 title = h2_tag.text.rstrip()
 
         # Extract the raw text from the article
-        div = soup.find('div', class_='text')
-        if div:
+        divs = soup.find_all('div', class_='text')
+        for div in divs:
+            raw_text += div.get_text(separator=" ", strip=True)
             paragraphs = div.find_all('p')
             for p in paragraphs:
                 if not p.find('a'):
@@ -114,7 +123,7 @@ def write_metadata_to_csv(meta_data_list, filename):
     with open(f"{filename}.csv", "w", encoding="utf-8") as f:
         f.write("<Title>;<Publication Date>;<Update Date>;<Location>;<Link>;<Raw Text>;<HTML Text>\n")
         for md in meta_data_list:
-            f.write(f"<{md.title}>;<{md.publication_date}>;<{md.update_date}>;<{md.meta_location}>;<{md.link}>;\"<{md.raw_text}>\";<{md.HTML_text}>\n".replace(',', ';'))
+            f.write(f"<{md.title}>;<{md.publication_date}>;<{md.update_date}>;<{md.meta_location}>;<{md.link}>;\"<{md.raw_text}>\";<{md.HTML_text}>\n")
     print("Metadata written to file.")
 
 
