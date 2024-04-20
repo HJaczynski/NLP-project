@@ -17,7 +17,7 @@ class MetaData:
     def __init__(self, publication_date, update_date, meta_location, title, html_text, raw_text, link):
         self.publication_date = publication_date #done
         self.update_date = update_date #done
-        self.meta_location = meta_location
+        self.meta_location = meta_location #done
         self.title = title #done
         self.HTML_text = html_text #done
         self.raw_text = raw_text #done

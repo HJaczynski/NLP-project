@@ -4,6 +4,7 @@ import requests
 import re
 import time
 from datetime import datetime
+import csv
 
 # Function to extract the date from a string using regular expressions
 def extract_date_from_string(text):
@@ -51,7 +52,7 @@ def fetch_unb_api():
     return list(links_to_scrape)
 
 
-# Function to scrape the UNB articles
+# Function to scrape the UNB articles for metadata
 def scrape_metadata(links):
     meta_data_list = []
 
@@ -67,6 +68,13 @@ def scrape_metadata(links):
 
         information = soup.find_all('li', class_='news-section-bar')
 
+        html_raw_text = soup.find('div', class_="news-article-text-block text-patter-edit ref-link")
+
+        if len(information) > 4:
+            meta_location = information[0].text
+        else:
+            meta_location = "Bangladesh"
+
         # Extract the publication and update date
         for info in information:
             if "Publish" in info.text:
@@ -77,28 +85,38 @@ def scrape_metadata(links):
                 update_date = datetime.strptime(date_str, '%B %d, %Y, %I:%M %p')
                 break
 
+
         # Extract the title of the article
         title_div = soup.find('div', class_='upper-box')
         if title_div:
             h2_tag = title_div.find('h2')
             if h2_tag:
-                title = h2_tag.text
+                title = h2_tag.text.rstrip()
 
         # Extract the raw text from the article
         div = soup.find('div', class_='text')
         if div:
             paragraphs = div.find_all('p')
-            print(len(paragraphs))
             for p in paragraphs:
                 if not p.find('a'):
-                    raw_text += p.text + " "
+                    raw_text += p.text.rstrip() + " "
         
         # Create a new MetaData object and append it to the list
-        new_md = MetaData(publication_date, update_date, "Bangladesh", title, html_text.text, raw_text, link)
+        new_md = MetaData(publication_date, update_date, meta_location, title, html_raw_text, raw_text, link)
         meta_data_list.append(new_md)
 
     # Return the list of MetaData objects
     return meta_data_list
+
+
+# This does not work, needs fixing in the future
+def write_metadata_to_csv(meta_data_list, filename):
+    with open(f"{filename}.csv", "w", encoding="utf-8") as f:
+        f.write("<Title>;<Publication Date>;<Update Date>;<Location>;<Link>;<Raw Text>;<HTML Text>\n")
+        for md in meta_data_list:
+            f.write(f"<{md.title}>;<{md.publication_date}>;<{md.update_date}>;<{md.meta_location}>;<{md.link}>;\"<{md.raw_text}>\";<{md.HTML_text}>\n".replace(',', ';'))
+    print("Metadata written to file.")
+
 
 
 # Function to write the links obtained from the UNB API to a txt file
@@ -108,3 +126,13 @@ def write_links_to_file(links):
         f.write(link + "\n")
     f.close()
     print("Links written to file.")
+
+
+# Function to read the links from a txt file
+def read_links_from_file(filename):
+    links = []
+    f = open(filename, "r")
+    for line in f:
+        links.append(line.strip())
+    f.close()
+    return links
