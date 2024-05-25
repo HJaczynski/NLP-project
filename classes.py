@@ -1,10 +1,8 @@
 class AccidentData:
-    def __init__(self, location, publish_date, update_date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link):
+    def __init__(self, location, date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link):
         self.location = location
-        self.publish_date = publish_date
-        self.update_date = update_date
+        self.date = date
         self.vehicles = vehicles
-        self.num_vehicles = len(self.vehicles)
         self.casualties = casualties
         self.casualties_age = casualties_age
         self.injured = injured
