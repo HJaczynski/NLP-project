@@ -105,10 +105,10 @@ def scrape_metadata(links):
         divs = soup.find_all('div', class_='text')
         for div in divs:
             raw_text += div.get_text(separator=" ", strip=True)
-            paragraphs = div.find_all('p')
-            for p in paragraphs:
-                if not p.find('a'):
-                    raw_text += p.text.rstrip() + " "
+            # paragraphs = div.find_all('p')
+            # for p in paragraphs:
+            #     if not p.find('a'):
+            #         raw_text += p.text.rstrip() + " "
         
         # Create a new MetaData object and append it to the list
         new_md = MetaData(publication_date, update_date, meta_location, title, html_raw_text, raw_text, link)
@@ -127,6 +127,35 @@ def write_metadata_to_csv(meta_data_list, filename):
     print("Metadata written to file.")
 
 
+# This does not work, needs fixing in the future
+def write_raw_text_to_csv(meta_data_list, filename):
+    with open(f"{filename}.csv", "w", encoding="utf-8") as f:
+        f.write("<Raw Text>\n")
+        for md in meta_data_list:
+            f.write(f"{md.raw_text}")
+    print("Metadata written to file.")
+
+def read_metadata_from_csv(filename):
+    meta_data_list = []
+
+    with open(f"{filename}.csv", "r", encoding="utf-8") as f:
+        csv_reader = csv.reader(f, delimiter=';')
+        next(csv_reader)  # Skip the header row
+
+        for row in csv_reader:
+            # Create an instance of MetaData for each row
+            metadata = MetaData(
+                publication_date=row[1],
+                update_date=row[2],
+                meta_location=row[3],
+                title=row[0],
+                html_text=row[6],
+                raw_text=row[5],
+                link=row[4]
+            )
+            meta_data_list.append(metadata)
+    
+    return meta_data_list
 
 # Function to write the links obtained from the UNB API to a txt file
 def write_links_to_file(links):

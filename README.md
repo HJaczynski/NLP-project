@@ -2,13 +2,13 @@
 Regular project - traffic accident news analysis – automatic  understanding of news articles
 
 The goal is to extract information concerning accidents: 
-- Exact place where it occurred.
-- When did it occur?
-- What kinds of vehicles were involved?
+- Exact place where it occurred. DONE
+- When did it occur? DONE
+- What kinds of vehicles were involved? DONE
 - How many causalities were the consequences of an accident? What was their age?
 - How many persons were injured? 
-- What was the reason for the accident?
-- Sequence of actions (if applicable).
+- What was the reason for the accident? DONE
+- Sequence of actions (if applicable). DONE
 
 The project will consist of the following elements:
 1. Data acquisition module
