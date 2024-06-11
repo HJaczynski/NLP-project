@@ -12,7 +12,7 @@ class AccidentData:
         self.location_name = location_name
     
     def __str__(self):
-        return f"Accident Data: Location={self.location}, Date={self.date}, Vehicles={self.vehicles}, Casualties={self.casualties}, Injured={self.injured}, Reason={self.accident_reason}, Action={self.action_sequence}, Link={self.link}"
+        return f"Accident Data: Location={self.location}, Date={self.date}, Vehicles={self.vehicles}, Casualties={self.casualties}, Casualties Age={self.casualties_age},  Injured={self.injured}, Reason={self.accident_reason}, Action={self.action_sequence}, Link={self.link}"
 
 
 
@@ -26,6 +26,5 @@ class MetaData:
         self.raw_text = raw_text
         self.link = link
         
-
     def __str__(self):
         return f"Title: {self.title} \nPublication Date: {self.publication_date} \nUpdate Date: {self.update_date} \nLocation: {self.meta_location} \nLink: {self.link}\n"
