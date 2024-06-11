@@ -1,3 +1,4 @@
+
 location;publish_date;vehicles;casualties;casualties_age;injured;accident_reason;action_sequence;link;exact_location_name
 ['Taltola', 'Mirpur'];['Oct 16', 'Tuesday', 'morning', 'around 9:30 am'];['Tractor'];['man was killed', 'Saddam Hossain', 'Saddam Hossain', 'Jannat Hossain'];['30'];0;reason;actions;https://www.unb.com.bd/category/Bangladesh/man-killed-in-kushtia-road-crash/4366;[Taltola in Mirpur upazila, Mirpur upazila]
 ['Karbala', 'Baraigram'];['Friday', 'the morning'];['Truck', 'Ambulance', 'Rickshaw'];['a man was killed', 'Ayub Ali'];[];8;reason;actions;https://www.unb.com.bd/category/Bangladesh/truck-ambulance-collision-leaves-one-dead-in-natore/3597;[Karbala in Baraigram upazila, Baraigram upazila]

@@ -578,3 +578,4 @@ if __name__ == "__main__":
     window = MapWindow(accident_data_list)
     window.show()
     sys.exit(app.exec())
+
