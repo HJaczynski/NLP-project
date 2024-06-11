@@ -376,10 +376,10 @@ def extract_details(meta_data_list):
         injured = extract_injured(doc)
 
         # reason for the accident
-        #reason = extract_reason_hf(text.raw_text)
+        reason = extract_reason_hf(text.raw_text)
 
         # sequence of actions
-        #actions = extract_sequence_of_actions_spacy(doc)
+        actions = extract_sequence_of_actions_spacy(doc)
 
         # AccidentData object
         accident_data = AccidentData(
@@ -389,8 +389,8 @@ def extract_details(meta_data_list):
             casualties= casualties,
             casualties_age= extract_ages(doc),
             injured= injured,
-            accident_reason= "null",
-            action_sequence= "null",
+            accident_reason= reason,
+            action_sequence= actions,
             link= text.link,
             exact_location_name = exact_locations
         )

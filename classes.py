@@ -1,5 +1,5 @@
 class AccidentData:
-    def __init__(self, location, date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link,location_name):
+    def __init__(self, location, date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link,location_name, exact_location_name):
         self.location = location
         self.date = date
         self.vehicles = vehicles
@@ -9,7 +9,7 @@ class AccidentData:
         self.accident_reason = accident_reason
         self.action_sequence = action_sequence
         self.link = link
-        self.location_name = location_name
+        self.exact_location_name = exact_location_name
     
     def __str__(self):
         return f"Accident Data: Location={self.location}, Date={self.date}, Vehicles={self.vehicles}, Casualties={self.casualties}, Casualties Age={self.casualties_age},  Injured={self.injured}, Reason={self.accident_reason}, Action={self.action_sequence}, Link={self.link}"
