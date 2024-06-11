@@ -41,3 +41,8 @@ project to be downloaded). The submission includes the project and its documenta
 Documentation should cover in detail the algorithm for information extraction. 
 Analysis of quality and properties of text processing. The project must contain a readme 
 file with instructions on how to run it.
+
+
+In order to run our project one need to create own environment: python -m venv venv Then activate it: ./venv/Scripts/activate.ps1 After that all there is to be done is to install all libraries: pip install -r requirements.txt
+
+After running it and installing all libraries one needs to run the gui.py program or check the notebooks and run them.
