@@ -105,10 +105,7 @@ def scrape_metadata(links):
         divs = soup.find_all('div', class_='text')
         for div in divs:
             raw_text += div.get_text(separator=" ", strip=True)
-            # paragraphs = div.find_all('p')
-            # for p in paragraphs:
-            #     if not p.find('a'):
-            #         raw_text += p.text.rstrip() + " "
+            
         
         # Create a new MetaData object and append it to the list
         new_md = MetaData(publication_date, update_date, meta_location, title, html_raw_text, raw_text, link)
