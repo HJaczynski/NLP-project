@@ -1,0 +1,52 @@
+{
+  "lang":"en",
+  "name":"pipeline",
+  "version":"0.0.0",
+  "spacy_version":">=3.7.4,<3.8.0",
+  "description":"",
+  "author":"",
+  "email":"",
+  "url":"",
+  "license":"",
+  "spacy_git_version":"bff8725f4",
+  "vectors":{
+    "width":0,
+    "vectors":0,
+    "keys":0,
+    "name":null,
+    "mode":"default"
+  },
+  "labels":{
+    "tok2vec":[
+
+    ],
+    "ner":[
+      "INJURED PEOPLE"
+    ]
+  },
+  "pipeline":[
+    "tok2vec",
+    "ner"
+  ],
+  "components":[
+    "tok2vec",
+    "ner"
+  ],
+  "disabled":[
+
+  ],
+  "performance":{
+    "ents_f":0.9929577465,
+    "ents_p":0.9929577465,
+    "ents_r":0.9929577465,
+    "ents_per_type":{
+      "INJURED PEOPLE":{
+        "p":0.9929577465,
+        "r":0.9929577465,
+        "f":0.9929577465
+      }
+    },
+    "tok2vec_loss":83.903550092,
+    "ner_loss":76.3927687863
+  }
+}
