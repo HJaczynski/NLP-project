@@ -313,7 +313,7 @@ def read_accident_data_from_csv(file_path):
                     accident_reason=row[6],
                     action_sequence=row[7],
                     link=row[8],
-                    location_name=location
+                    exact_location_name = location
                 )
                 accident_data_list.append(accident)
             
@@ -554,7 +554,7 @@ class MapWindow(QMainWindow):
         for accident in self.filtered_accidents:
             html += f"""
                 L.marker([{accident.location[0]}, {accident.location[1]}]).addTo(map)
-                    .bindPopup('<b>Accident:</b><br>Location: {accident.location_name}<br>Date: {accident.date}<br>Vehicles: {accident.vehicles}<br>Casualties: {accident.casualties}<br>Casualties Age: {accident.casualties_age}<br>Injured: {accident.injured}<br>Reason: {accident.accident_reason}<br>Action: {accident.action_sequence}<br><a href="{accident.link} ">More info</a>')
+                    .bindPopup('<b>Accident:</b><br>Location: {accident.exact_location_name}<br>Date: {accident.date}<br>Vehicles: {accident.vehicles}<br>Casualties: {accident.casualties}<br>Casualties Age: {accident.casualties_age}<br>Injured: {accident.injured}<br>Reason: {accident.accident_reason}<br>Action: {accident.action_sequence}<br><a href="{accident.link} ">More info</a>')
                     .openPopup();
             """
 

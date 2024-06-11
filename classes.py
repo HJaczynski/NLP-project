@@ -1,5 +1,5 @@
 class AccidentData:
-    def __init__(self, location, date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link,location_name, exact_location_name):
+    def __init__(self, location, date, vehicles, casualties, casualties_age, injured, accident_reason, action_sequence, link,location_name = "NA", exact_location_name="NA"):
         self.location = location
         self.date = date
         self.vehicles = vehicles
